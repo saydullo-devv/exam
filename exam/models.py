@@ -30,14 +30,14 @@ class Subject(models.Model):
 class Exam(models.Model):
     name = models.CharField(max_length=255)
     time = models.DateTimeField(auto_created=True)
-    subject = models.OneToOneField(Subject, on_delete=models.SET_NULL, null=True)
+    subject = models.ForeignKey(Subject, on_delete=models.SET_NULL, null=True)
 
     def __str__(self):
         return f"{self.name},{self.time}"
 
 class Question(models.Model):
     name = models.CharField(max_length=255)
-    exam = models.OneToOneField(Exam, on_delete=models.CASCADE)
+    exam = models.ForeignKey(Exam, on_delete=models.CASCADE)
 
     def __str__(self):
         return f"{self.name}"
